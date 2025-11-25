@@ -1,21 +1,108 @@
- .weather-card {
+/* left side */
+.weather-card {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  height: 250px;          
+  height: 250px;
 }
 .weather-content {
-  position: relative;
+  position: absolute;
+  top: 20px;
+  left: 20px;
   z-index: 5;
   color: white;
+  text-align: left;
+}
+.weather-content h1 {
+  font-size: 3rem;
+  margin: 0.2rem 0;
+}
+.weather-content h2 {
+  font-size: 1.5rem;
+  margin: 0.2rem 0;
+}
+.weather-content p {
+  font-size: 1rem;
+  margin: 0.2rem 0;
+  opacity: 0.8;
 }
 .weather-bg {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;     
+  background-image: url('/assets/images/bg-today-large.svg');
+  background-size: cover;
   background-position: center;
-  background-image:
-    url('/assets/images/bg-today-large.svg');}
+}
+
+
+.weather-metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0; 
+}
+.weather-metrics .metric-card {
+  flex: 1;
+  background-color: #1e2a38;
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.metric-card label {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+.metric-card h2 {
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+#dailyForecastRow {
+  display: flex;
+  gap: 1rem;              
+  flex-wrap: wrap;        
+  justify-content: space-between; 
+  padding-top: 0.5rem;   /* small breathing room above cards */
+  padding-bottom: 1rem;
+}
+
+.forecast-card {
+  background-color: #1e2a38;
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  flex: 1;                
+  max-width: 100px;      
+  height: 50px;          
+  box-sizing: border-box; 
+}
+
+
+
+.search-section {
+  margin-bottom: 2rem; /* space below the heading */
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 2rem; /* space below the search bar */
+}
+
+.search-box .input-group {
+  flex: 1;                 /* input takes most of the width */
+}
+
+#search-btn {
+  padding: 0.5rem 1.5rem;  /* balanced button size */
+  border-radius: 8px;
+}

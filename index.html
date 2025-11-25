@@ -34,19 +34,21 @@
         </div>
       </div>
     </nav>
-    <div class="col-md-6 text-center mx-auto">
+    <div class="col-md-6 text-center mx-auto search-section">
       <h1 style="color:white">How's the sky looking today?</h1>
     </div>
+
     <div class="row justify-content-center">
-      <div class="col-12 col-md-6 d-flex justify-content-center gap-2">
-        <div class="input-group w-75">
-          <span class="input-group-text">
-            <img src="/assets/images/icon-search.svg" width="20" height="20" alt="icon">
-          </span>
-          <!-- id needed for js -->
-          <input id="search-input" type="text" class="form-control" placeholder="Search for a city, e.g., New York">
+      <div class="col-12 col-md-6 d-flex justify-content-center">
+        <div class="search-box">
+          <div class="input-group">
+            <span class="input-group-text">
+              <img src="/assets/images/icon-search.svg" width="20" height="20" alt="icon">
+            </span>
+            <input id="search-input" type="text" class="form-control" placeholder="Search for a city, e.g., New York">
+          </div>
+          <button id="search-btn" class="btn btn-primary">Search</button>
         </div>
-        <button id="search-btn" class="btn btn-primary">Search</button>
       </div>
     </div>
 
@@ -63,25 +65,25 @@
           </div>
         </div>
         
-        <div class="row text-center mb-4">
-          <div class="col-3">
+        <div class="row text-center mb-4 col text-white p-4 weather-metrics">
+          <div class="col-3 metric-card" style="background-color: #1e2a38;border-radius: 10px;">
             <label for="feelslike">Feels like</label>
             <h2 id="feelslike"></h2>
           </div>
-          <div class="col-3">
+          <div class="col-3 metric-card" style="background-color: #1e2a38;border-radius: 10px;">
             <label for="humidity">Humidity</label>
             <h2 id="humidity"></h2>
           </div>
-          <div class="col-3">
+          <div class="col-3 metric-card" style="background-color: #1e2a38;border-radius: 10px;">
             <label for="wind">Wind</label>
             <h2 id="wind"></h2>
           </div>
-          <div class="col-3">
+          <div class="col-3 metric-card" style="background-color: #1e2a38;border-radius: 10px;">
             <label for="precipitation">Precipitation</label>
             <h2 id="precipitation"></h2>
           </div>
         </div>
-        <label class="mb-2 fw-bold">Daily forecast</label>
+        <label class="mb-1 fw-bold text-white ">Daily forecast</label>
         <div class="row" id="dailyForecastRow"></div>
       </div>
       <!-- RIGHT SIDE: HOURLY SIDEBAR -->
@@ -90,7 +92,7 @@
 
         <div class="dropdown d-flex mb-3">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            ${date}
+            <label for="dateday" id="dateday"></label>
           </button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Monday</a></li>
