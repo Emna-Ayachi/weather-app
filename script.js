@@ -8,7 +8,7 @@ const feelslikeInsert=document.getElementById("feelslike");
 const humidityInsert = document.getElementById("humidity");
 const precipitationInsert=document.getElementById("precipitation");
 const dateday=document.getElementById("dateday");
-
+let weatherData = null;
 
 searchBtn.addEventListener("click", () => {
   const city = searchInput.value.trim();
@@ -67,6 +67,8 @@ async function getWeather(lat,long,loc) {
     feelslikeInsert.textContent=`${feelsLike}°`;
     humidityInsert.textContent=`${humidity}${data.hourly_units.relativehumidity_2m}`;
     precipitationInsert.textContent=`${precipitation} ${data.hourly_units.precipitation}`
+    weatherData = data;
+    renderHourlyForcast(weatherData);
     return data;
   }
   catch (err) {
@@ -82,8 +84,7 @@ async function loadForecast(lat, long, loc) {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log("data")
-  renderForecast(data);
+  renderForecast(data); 
 }
 const weatherCodeMap = {
   0: { label: "Sunny", icon: "icon-sunny.webp" },
@@ -128,4 +129,46 @@ function renderForecast(data) {
     container.appendChild(card);
   }
 }
+//GO BACK TO IT 
+function renderHourlyForcast(data){
+  const times = data.hourly.time;
+  const temps = data.hourly.apparent_temperature;
+  //console.log(times, temps);
+  const currentDay = document.getElementById("dateday").textContent;
+  console.log("selected day ", currentDay)
+  const today = new Date();
+  const selectedDate = new Date(today);
 
+  const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const selectedIndex = dayNames.indexOf(currentDay);
+  const offset = (selectedIndex - today.getDay() + 7) % 7;
+  selectedDate.setDate(today.getDate() + offset);
+
+  const targetDateStr = selectedDate.toISOString().split("T")[0];
+
+  // clear old items
+  const hourlyList = document.querySelector(".hourly-list");
+  hourlyList.innerHTML = "";
+  for (let i = 0; i < times.length; i++) {
+    if (times[i].startsWith(targetDateStr)) {
+      const hour = new Date(times[i]).getHours();
+      const temp = temps[i];
+      const label = weatherCodeMap[temp] || "Unknown";
+
+      const item = document.createElement("div");
+      item.className = "d-flex justify-content-between mb-2";
+      item.innerHTML = `<span>${hour}:00</span><span>${label}</span><span>${temp}°C</span>`;
+      hourlyList.appendChild(item);
+    }
+  }
+}
+
+const dropdownItems = document.querySelectorAll(".dropdown-item");
+dropdownItems.forEach(item => {
+  item.addEventListener("click", e => {
+    e.preventDefault(); 
+    const selectedDay = e.target.textContent; 
+    document.getElementById("dateday").textContent = selectedDay;
+    renderHourlyForcast(weatherData); 
+  });
+});
