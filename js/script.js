@@ -214,6 +214,8 @@ let currentUnits = {
 };
 document.querySelectorAll(".dropdown-item").forEach(item => {
   item.addEventListener("click", () => {
+    document.querySelectorAll(".dropdown-item").forEach(i => i.classList.remove("active"));
+    document.querySelectorAll(".dropdown-item").forEach(i => i.classList.remove("active-unit"));
     const text = item.textContent.trim();
     if (text.includes("Switch to Imperial/Metric")) {
       const switchingToImperial = currentUnits.temperature === "metric";
@@ -268,7 +270,7 @@ function updateWeatherDisplay() {
   loadForecast(weatherData.latitude, weatherData.longitude, weatherData.location);
 }
 function updateActiveStyles() {
-  document.querySelectorAll(".dropdown-item").forEach(item => {
+  document.querySelectorAll("nav .dropdown-item").forEach(item => {
     item.classList.remove("active-unit");
 
     const text = item.textContent.trim();
