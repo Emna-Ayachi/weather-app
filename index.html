@@ -9,13 +9,20 @@
   <title>Frontend Mentor | Weather app</title>
 </head>
 <body style="background-color:  #04022c;">
+  <div id="loadingOverlay" class="loading-overlay d-none">
+    <div class="loading-spinner">
+      <img src="/assets/images/icon-loading.svg" alt="Loading..." />
+      <p class="text-white mt-2">Loading weather data...</p>
+    </div>
+  </div>
+
   <div class="container">
     <!-- go back to this div later on -->
     <nav class="navbar">
       <div class="container-fluid">
         <img class="navbar-brand" src="/assets/images/logo.svg" alt="logo">
         <div class="dropdown d-flex ">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
             <img src="/assets/images/icon-units.svg" alt="icon-units">
             Units
           </button>

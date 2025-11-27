@@ -25,6 +25,7 @@ const day = String(now.getUTCDate()).padStart(2, '0');
 const hour = String(now.getUTCHours()).padStart(2, '0');
 const targetTime = `${year}-${month}-${day}T${hour}:00`;
 async function searchCity(city) {
+  showLoading();
   try {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`;
     const res = await fetch(url);
@@ -46,6 +47,8 @@ async function searchCity(city) {
   } catch (err) {
     console.error(err);
     alert("Error fetching location.");
+  } finally {
+    hideLoading();
   }
 }
 
@@ -254,3 +257,10 @@ function updateWeatherDisplay() {
   loadForecast(weatherData.latitude, weatherData.longitude, weatherData.location);
 }
 
+function showLoading() {
+  document.getElementById("loadingOverlay").classList.remove("d-none");
+}
+
+function hideLoading() {
+  document.getElementById("loadingOverlay").classList.add("d-none");
+}
