@@ -117,7 +117,7 @@ function renderForecast(data) {
     const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
     const shortDay = dayName.substring(0, 3); 
     const weather = weatherCodeMap[codes[i]] || { label: "Unknown", icon: "icon-overcast.webp" };
-    const iconPath = `assets/images/${weather.icon}`;
+    const iconPath = `./assets/images/${weather.icon}`;
     const card = document.createElement("div");
     card.className = "col text-center text-white p-2";
     card.style.backgroundColor = "#1e2a38";
@@ -172,7 +172,7 @@ function renderHourlyForcast(data) {
       item.className = "hourly-card";
       item.innerHTML = `
         <div class="hourly-icon">
-          <img src="/assets/images/${icon}" alt="" />
+          <img src="./assets/images/${icon}" alt="" />
         </div>
         <div class="hourly-time">
           ${formatHour(hour)}
