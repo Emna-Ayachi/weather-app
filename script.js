@@ -215,6 +215,17 @@ let currentUnits = {
 document.querySelectorAll(".dropdown-item").forEach(item => {
   item.addEventListener("click", () => {
     const text = item.textContent.trim();
+    if (text.includes("Switch to Imperial/Metric")) {
+      const switchingToImperial = currentUnits.temperature === "metric";
+
+      currentUnits.temperature = switchingToImperial ? "imperial" : "metric";
+      currentUnits.windSpeed = switchingToImperial ? "mph" : "km/h";
+      currentUnits.precipitation = switchingToImperial ? "in" : "mm";
+
+      updateActiveStyles();
+      updateWeatherDisplay();
+      return;
+    }
     if (text.includes("Celsius")) currentUnits.temperature = "metric";
     if (text.includes("Fahrenheit")) currentUnits.temperature = "imperial";
     if (text.includes("km/h")) currentUnits.windSpeed = "km/h";
@@ -255,6 +266,26 @@ function updateWeatherDisplay() {
   }
   renderHourlyForcast(weatherData);
   loadForecast(weatherData.latitude, weatherData.longitude, weatherData.location);
+}
+function updateActiveStyles() {
+  document.querySelectorAll(".dropdown-item").forEach(item => {
+    item.classList.remove("active-unit");
+
+    const text = item.textContent.trim();
+
+    if (
+      (text.includes("Celsius")     && currentUnits.temperature === "metric") ||
+      (text.includes("Fahrenheit")  && currentUnits.temperature === "imperial") ||
+
+      (text.includes("km/h")        && currentUnits.windSpeed === "km/h") ||
+      (text.includes("mph")         && currentUnits.windSpeed === "mph") ||
+
+      (text.includes("Millimeters") && currentUnits.precipitation === "mm") ||
+      (text.includes("Inches")      && currentUnits.precipitation === "in")
+    ) {
+      item.classList.add("active-unit");
+    }
+  });
 }
 
 function showLoading() {
