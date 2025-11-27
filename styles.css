@@ -86,7 +86,7 @@
 
 
 .search-section {
-  margin-bottom: 2rem; /* space below the heading */
+  margin-bottom: 2rem; 
 }
 
 .search-box {
@@ -95,14 +95,57 @@
   gap: 0.75rem;
   width: 100%;
   max-width: 500px;
-  margin-bottom: 2rem; /* space below the search bar */
+  margin-bottom: 2rem; 
 }
 
 .search-box .input-group {
-  flex: 1;                 /* input takes most of the width */
+  flex: 1;                 
 }
 
 #search-btn {
-  padding: 0.5rem 1.5rem;  /* balanced button size */
+  padding: 0.5rem 1.5rem;  
   border-radius: 8px;
+}
+
+
+
+.hourly-card {
+  display: flex;
+  align-items: center;
+  background-color: rgba(30, 35, 56, 0.185);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.hourly-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.hourly-time {
+  flex: 1;
+  text-align: left;
+  margin-left: 15px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.hourly-temp {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.hourly-list {
+  max-height: 500px;   /* adjust to fit your design */
+  overflow-y: auto;    /* enables vertical scrolling */
+  padding-right: 6px;  /* space for scrollbar */
+}
+.hourly-list::-webkit-scrollbar {
+  width: 6px;
+}
+.hourly-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
 }
